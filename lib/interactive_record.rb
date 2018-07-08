@@ -48,7 +48,8 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    sql = "SELECT * FROM #{self.table_name} WHERE #{attribute.keys[0].to_s.downcase} = '#{attribute.values[0].to_s.downcase}'"
+    sql = "SELECT * FROM #{self.table_name} WHERE ? = '#{attribute.values[0].to_s.downcase}'"
+    DB[:conn].execute(sql, attribute.keys[0].to_s.downcase)
   end
 
 end
