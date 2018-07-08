@@ -48,7 +48,7 @@ class InteractiveRecord
   end
 
   def self.find_by(attribute)
-    value = attribute_values[0].class == Fixnum ? attribute_values[0] : "'#{attribute_values[0]}'"
+    value = attribute.values[0].class == Fixnum ? attribute.values[0] : "'#{attribute.values[0]}'"
     sql = "SELECT * FROM #{self.table_name} WHERE #{attribute.keys[0]} = #{value}"
     DB[:conn].execute(sql)
   end
