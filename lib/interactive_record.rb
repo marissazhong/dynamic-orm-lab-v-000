@@ -18,8 +18,8 @@ class InteractiveRecord
     column_names.compact
   end
 
-  def initialize(attributes={})
-    attributes.each {|k,v| self.send("#{k}=",v)}
+  def initialize(options={})
+    options.each {|k,v| self.send("#{k}=",v)}
   end
 
   def table_name_for_insert
@@ -43,6 +43,6 @@ class InteractiveRecord
     @id = DB[:conn].execute("SELECT last_insert_rowid() FROM #{table_name_for_insert}")[0][0]
   end
 
-  
+
 
 end
